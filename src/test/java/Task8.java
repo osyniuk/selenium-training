@@ -1,20 +1,25 @@
-import io.github.bonigarcia.wdm.FirefoxDriverManager;
-import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Task3 {
+
+public class Task8 {
     WebDriver driver;
-    //public WebDriverWait wait;
 
     @Before
     public void start() {
@@ -22,25 +27,40 @@ public class Task3 {
         //driver = new FirefoxDriver();
         //InternetExplorerDriverManager.getInstance().setup();
         //driver = new InternetExplorerDriver();
+        ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
-        // wait = new WebDriverWait(driver, 10);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
+
     @Test
-    public void login() {
+    public void countryExtLink() {
+
+        //login
+
         driver.get("http://localhost/litecart/admin/");
         driver.manage().deleteAllCookies();
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
-        //driver.findElement(By.xpath("//*[@id=\"box-login\"]/form/div[2]/button")).click();
         driver.findElement(By.cssSelector(".btn-default")).click();
-        //Thread.sleep(3000);
-        //driver.getPageSource().contains("You are now logged in as admin");
-        //driver.findElement(By.className("alert-success"));
-        //driver.findElement(By.xpath("//*[@id=\"notices\"]/div[2]/a"));
-        //driver.findElement(By.cssSelector(".alert-success"));
         driver.findElement(By.cssSelector(".fa-check-circle"));
+
+        //Open Countries-"Add New Country"
+
+        driver.findElement(By.xpath("//span[contains(text(), 'Countries')]")).click();
+        driver.findElement(By.cssSelector("a[href='http://localhost/litecart/admin/?app=countries&doc=edit_country']")).click();
+
+        //Open All External Links
+
+        List<WebElement> listOfExtLinks = driver.findElements(By.xpath("//label/a/i"));
+        for (int i = 0; i < listOfExtLinks.size(); i++) {
+            listOfExtLinks = driver.findElements(By.xpath("//label/a/i"));
+            listOfExtLinks.get(i).click();
+            //Assert.assertTrue("Number of browser windows", driver.getWindowHandles().size() == i+2);
+        }
+
+        Assert.assertTrue("Number of browser windows", driver.getWindowHandles().size() == 8);
+
     }
 
     @After

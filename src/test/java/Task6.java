@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -25,7 +26,7 @@ public class Task6 {
         //driver = new FirefoxDriver();
         //InternetExplorerDriverManager.getInstance().setup();
         //driver = new InternetExplorerDriver();
-        ChromeDriverManager.getInstance().setup();
+        // ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
@@ -56,11 +57,11 @@ public class Task6 {
         driver.findElement(By.xpath("//input[@name='sku']")).sendKeys("Manufacturer");
         driver.findElement(By.xpath("//input[@name='gtin']")).sendKeys("22332211");
         driver.findElement(By.xpath("//input[@name='taric']")).sendKeys("99887766");
-        driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys("3");
-        driver.findElement(By.xpath("//input[@name='weight']")).sendKeys("20");
-        driver.findElement(By.xpath("//input[@name='dim_x']")).sendKeys("80");
-        driver.findElement(By.xpath("//input[@name='dim_y']")).sendKeys("100");
-        driver.findElement(By.xpath("//input[@name='dim_z']")).sendKeys("50");
+        driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys(Keys.DELETE + "3");
+        driver.findElement(By.xpath("//input[@name='weight']")).sendKeys(Keys.DELETE + "20");
+        driver.findElement(By.xpath("//input[@name='dim_x']")).sendKeys(Keys.DELETE + "80");
+        driver.findElement(By.xpath("//input[@name='dim_y']")).sendKeys(Keys.DELETE + "100");
+        driver.findElement(By.xpath("//input[@name='dim_z']")).sendKeys(Keys.DELETE + "50");
         Select sel = new Select(driver.findElement(By.name("sold_out_status_id")));
         sel.selectByIndex(2);
         ClassLoader classLoader = getClass().getClassLoader();
@@ -82,7 +83,7 @@ public class Task6 {
         //Prices tab
 
         driver.findElement(By.xpath("//a[contains(text(), 'Prices')]")).click();
-        driver.findElement(By.xpath("//input[@name='purchase_price']")).sendKeys("99");
+        driver.findElement(By.xpath("//input[@name='purchase_price']")).sendKeys(Keys.DELETE + "99");
         Select sel2 = new Select(driver.findElement(By.name("purchase_price_currency_code")));
         sel2.selectByValue("EUR");
         driver.findElement(By.xpath("//input[@name='prices[USD]']")).sendKeys("68");
