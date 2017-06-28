@@ -1,6 +1,8 @@
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -22,6 +24,7 @@ public class Task3 {
         //driver = new FirefoxDriver();
         //InternetExplorerDriverManager.getInstance().setup();
         //driver = new InternetExplorerDriver();
+        //ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         // wait = new WebDriverWait(driver, 10);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -40,7 +43,7 @@ public class Task3 {
         //driver.findElement(By.className("alert-success"));
         //driver.findElement(By.xpath("//*[@id=\"notices\"]/div[2]/a"));
         //driver.findElement(By.cssSelector(".alert-success"));
-        driver.findElement(By.cssSelector(".fa-check-circle"));
+        Assert.assertTrue(driver.findElements(By.cssSelector(".fa-check-circle")).size()>0);
     }
 
     @After

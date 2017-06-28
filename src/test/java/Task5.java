@@ -69,8 +69,8 @@ public class Task5 {
         String regularPriceOnMain = driver.findElement(By.className("regular-price")).getText();
 
         fontsCheck("rgba(51, 51, 51, 1)", "rgb(51, 51, 51)", "rgba(204, 0, 0, 1)", "rgb(204, 0, 0)");
-        driver.findElement(By.cssSelector("a[href='http://localhost/litecart/en/rubber-ducks-c-1/subcategory-c-2/yellow-duck-p-1']")).click();
-        //driver.findElement(By.xpath("//*[@id='content']/ul/li[1]")).click();
+        //driver.findElement(By.cssSelector("a[href='http://localhost/litecart/en/rubber-ducks-c-1/subcategory-c-2/yellow-duck-p-1']")).click();
+        driver.findElement(By.className("link")).click();
         String productNameOnItem = driver.findElement(By.xpath("//*[@id='box-product']//h1")).getText();
         Assert.assertEquals("NamesEquality", productNameOnMain, productNameOnItem);
 

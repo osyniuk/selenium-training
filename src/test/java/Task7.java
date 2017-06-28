@@ -17,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Task7 {
     WebDriver driver;
+    WebDriverWait wait;
+
 
     @Before
     public void start() {
@@ -28,6 +30,7 @@ public class Task7 {
         // ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("--kiosk");
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver,20);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
@@ -58,7 +61,7 @@ public class Task7 {
             listOfPopularProducts.get(i).click();
 
             //Select for the Yellow Duck
-            if (driver.findElement(By.xpath("//*[@id=\"box-product\"]/div[1]/div[2]/h1")).getText().equals("Yellow Duck")) {
+            if (driver.findElement(By.xpath("//*[@id='box-product']/div[1]/div[2]/h1")).getText().equals("Yellow Duck")) {
                 Select sel = new Select(driver.findElement(By.name("options[Size]")));
                 sel.selectByValue("Medium");
 
@@ -69,7 +72,7 @@ public class Task7 {
             driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
 
             //wait Shopping Cart to contain all products
-            WebDriverWait wait = new WebDriverWait(driver, 20);
+            //WebDriverWait wait = new WebDriverWait(driver, 20);
             Integer futureQuantity = quantity + 1;
             wait.until(ExpectedConditions.textToBe(By.className("quantity"), futureQuantity.toString()));
             quantity = getQuantity();
@@ -86,15 +89,15 @@ public class Task7 {
 
 
         // get the collection of ducks in the table
-        List<WebElement> listOfProductsInCart = driver.findElements(By.xpath("//*[@id=\"box-checkout-cart\"]/div/table/tbody/tr"));
+        List<WebElement> listOfProductsInCart = driver.findElements(By.xpath("//*[@id='box-checkout-cart']/div/table/tbody/tr"));
         int numberOfProductsInCart = listOfProductsInCart.size();
 
 
         //remove ducks one by one
         for (int j = numberOfProductsInCart - 1; j > (-1); j--) {
             driver.findElement(By.name("remove_cart_item")).click();
-            WebDriverWait wait1 = new WebDriverWait(driver, 20);
-            wait1.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath("//*[@id='box-checkout-cart']/div/table/tbody/tr"), numberOfProductsInCart));
+            //WebDriverWait wait1 = new WebDriverWait(driver, 20);
+            wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath("//*[@id='box-checkout-cart']/div/table/tbody/tr"), numberOfProductsInCart));
             listOfProductsInCart = driver.findElements(By.xpath("//*[@id='box-checkout-cart']/div/table/tbody/tr"));
             numberOfProductsInCart = listOfProductsInCart.size();
         }

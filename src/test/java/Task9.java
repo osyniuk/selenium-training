@@ -54,7 +54,7 @@ public class Task9 {
         driver.findElement(By.cssSelector(".btn-default")).click();
 
         //Verify successful login message is present
-        driver.findElement(By.cssSelector(".fa-check-circle"));
+        Assert.assertTrue(driver.findElements(By.cssSelector(".fa-check-circle")).size()>0);
 
         //get the list of parent menu sections
         List<WebElement> listOfParentSections = driver.findElements(By.xpath("//*[@id='box-apps-menu']/li"));

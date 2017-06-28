@@ -26,7 +26,7 @@ public class Task6 {
         //driver = new FirefoxDriver();
         //InternetExplorerDriverManager.getInstance().setup();
         //driver = new InternetExplorerDriver();
-        // ChromeDriverManager.getInstance().setup();
+        //ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
@@ -41,13 +41,22 @@ public class Task6 {
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.cssSelector(".btn-default")).click();
-        driver.findElement(By.cssSelector(".fa-check-circle"));
+        Assert.assertTrue(driver.findElements(By.cssSelector(".fa-check-circle")).size()>0);
 
-        //Catalog - Add New Product - General tab
+        //Navigate to Catalog
 
         driver.findElement(By.xpath("//span[contains(text(), 'Catalog')]")).click();
-        driver.findElement(By.cssSelector("a[href='http://localhost/litecart/admin/?category_id=0&app=catalog&doc=edit_product']")).click();
-        //driver.findElement(By.xpath("//*[@id='tab-general']/div/div[1]/div[1]/div/div/label[1]")).click();
+
+        //Get the number of products in the Catalog
+
+        int initialNumberOfProducts = driver.findElements(By.xpath("//*[@id='main']/form/table/tbody/tr")).size();
+
+        //Click "Add new product"
+
+        driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();
+
+        //General tab
+
         driver.findElement(By.xpath("//label[contains(text(), 'Enabled')]")).click();
         driver.findElement(By.xpath("//input[@name='product_groups[]']")).click();
         driver.findElement(By.xpath("//input[@name='date_valid_from']")).sendKeys("0202" + Keys.ARROW_RIGHT + "2016");
@@ -89,7 +98,11 @@ public class Task6 {
         driver.findElement(By.xpath("//input[@name='prices[USD]']")).sendKeys("68");
         driver.findElement(By.xpath("//input[@name='prices[EUR]']")).sendKeys("65");
         driver.findElement(By.xpath("//button[@name='save']")).click();
-        driver.findElement(By.xpath("//a[contains(text(), 'Test Product')]"));
+
+        //Verify product was added to the Catalog
+
+        int finalNumberOfProducts = driver.findElements(By.xpath("//*[@id='main']/form/table/tbody/tr")).size();
+        Assert.assertTrue("One more product in the Catalog", finalNumberOfProducts==initialNumberOfProducts + 1);
     }
 
     @After
