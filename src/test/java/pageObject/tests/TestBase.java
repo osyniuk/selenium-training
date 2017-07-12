@@ -1,5 +1,6 @@
 package pageObject.tests;
 
+import org.junit.Before;
 import pageObject.app.Application;
 
 public class TestBase {
@@ -7,6 +8,7 @@ public class TestBase {
     public static ThreadLocal<Application>tlApp = new ThreadLocal<>();
     public Application app;
 
+    @Before
     public void start() {
         if (tlApp.get() !=null) {
             app = tlApp.get();

@@ -16,10 +16,11 @@ public class CatalogGeneralTab extends Page{
     }
 
     public void open(String baseURL) {
-        driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();//!!!
+        driver.get(baseURL + "/admin/?app=catalog&doc=catalog&category_id=0");
+        //driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();//!!!
     }
 
-    @FindBy (xpath = "//label[contains(text(), 'Enabled')]")
+    @FindBy (xpath = "//label[contains(text(), ' Enabled')]")
     public WebElement enableProduct;
 
     @FindBy (xpath = "//input[@name='product_groups[]']")
