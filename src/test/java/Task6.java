@@ -26,7 +26,7 @@ public class Task6 {
         //driver = new FirefoxDriver();
         //InternetExplorerDriverManager.getInstance().setup();
         //driver = new InternetExplorerDriver();
-        //ChromeDriverManager.getInstance().setup();
+        ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }

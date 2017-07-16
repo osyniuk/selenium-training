@@ -15,10 +15,7 @@ public class CatalogGeneralTab extends Page{
         PageFactory.initElements(driver,this);
     }
 
-    public void open(String baseURL) {
-        driver.get(baseURL + "/admin/?app=catalog&doc=catalog&category_id=0");
-        //driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();//!!!
-    }
+
 
     @FindBy (xpath = "//label[contains(text(), ' Enabled')]")
     public WebElement enableProduct;

@@ -13,11 +13,18 @@ public class CatalogPage extends Page {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    public CatalogPage open(String baseURL) {
+    public CatalogPage open(String baseURL) {//?????
         driver.findElement(By.xpath("//span[contains(text(), 'Catalog')]")).click();
         return this;
     }
-    public Integer getNumberOfProducts() {
+    public Integer getNumberOfProducts()  {
         return driver.findElements(By.xpath("//*[@id='main']/form/table/tbody/tr")).size();
     }
+
+    public void clickAddNewProduct()  {
+        //driver.get(baseURL + "/admin/?app=catalog&doc=catalog&category_id=0");
+        driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();//!!!
+
+    }
+    //driver.findElement(By.xpath("//*[@id='main']/ul/li[3]/a")).click();
 }

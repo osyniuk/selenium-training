@@ -1,7 +1,6 @@
 package pageObject.tests;
 
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-//import com.tngtech.java.junit.dataprovider.DataProviders;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +18,7 @@ Integer initialNumberOfProducts, finalNumberOfProducts;
         initialNumberOfProducts = app.getNumberOfProducts();
         app.addProductToCatalog(product);
         finalNumberOfProducts = app.getNumberOfProducts();
-        Assert.assertTrue(initialNumberOfProducts==finalNumberOfProducts+1);
+        Assert.assertTrue(finalNumberOfProducts==initialNumberOfProducts+1);
 
 
     }

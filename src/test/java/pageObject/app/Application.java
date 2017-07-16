@@ -14,7 +14,7 @@ public class Application {
     private CatalogInformationTab catalogInformationTab;
     private CatalogPricesTab catalogPricesTab;
 
-    private String baseURL = "http://localhost/litecart"; // http://localhost/litecart/admin/
+    private String baseURL = "http://localhost/litecart";
 
     public Application() {
         ChromeDriverManager.getInstance().setup();
@@ -33,7 +33,8 @@ public class Application {
     }
 
     public void addProductToCatalog(Product product) {
-        catalogPage.open(baseURL);
+        catalogPage.open(baseURL);//?????
+        catalogPage.clickAddNewProduct();
         catalogGeneralTab.enableProduct.click();
         catalogGeneralTab.productGroupsInput.click();
         catalogGeneralTab.dateValidFromInput.sendKeys(product.getDateValidFrom());
