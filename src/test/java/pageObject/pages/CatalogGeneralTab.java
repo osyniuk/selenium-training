@@ -9,54 +9,56 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 
-public class CatalogGeneralTab extends Page{
+public class CatalogGeneralTab extends Page {
     public CatalogGeneralTab(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
+    public void open(String baseURL) {
+        driver.get(baseURL + "/admin/?category_id=0&app=catalog&doc=edit_product");
+    }
 
-
-    @FindBy (xpath = "//label[contains(text(), ' Enabled')]")
+    @FindBy(xpath = "//label[contains(text(), ' Enabled')]")
     public WebElement enableProduct;
 
-    @FindBy (xpath = "//input[@name='product_groups[]']")
+    @FindBy(xpath = "//input[@name='product_groups[]']")
     public WebElement productGroupsInput;
 
-    @FindBy (xpath = "//input[@name='date_valid_from']")
+    @FindBy(xpath = "//input[@name='date_valid_from']")
     public WebElement dateValidFromInput;
 
-    @FindBy (xpath = "//input[@name='date_valid_to']")
+    @FindBy(xpath = "//input[@name='date_valid_to']")
     public WebElement dateValidToInput;
 
-    @FindBy (xpath = "//input[@name='code']")
+    @FindBy(xpath = "//input[@name='code']")
     public WebElement codeInput;
 
-    @FindBy (xpath = "//input[@name='name[en]']")
+    @FindBy(xpath = "//input[@name='name[en]']")
     public WebElement nameInput;
 
-    @FindBy (xpath = "//input[@name='sku']")
+    @FindBy(xpath = "//input[@name='sku']")
     public WebElement skuInput;
 
-    @FindBy (xpath = "//input[@name='gtin']")
+    @FindBy(xpath = "//input[@name='gtin']")
     public WebElement gtinInput;
 
-    @FindBy (xpath = "//input[@name='taric']")
+    @FindBy(xpath = "//input[@name='taric']")
     public WebElement taricInput;
 
-    @FindBy (xpath = "//input[@name='quantity']")
+    @FindBy(xpath = "//input[@name='quantity']")
     public WebElement quantityInput;
 
-    @FindBy (xpath = "//input[@name='weight']")
+    @FindBy(xpath = "//input[@name='weight']")
     public WebElement weightInput;
 
-    @FindBy (xpath = "//input[@name='dim_x']")
+    @FindBy(xpath = "//input[@name='dim_x']")
     public WebElement dimXInput;
 
-    @FindBy (xpath = "//input[@name='dim_y']")
+    @FindBy(xpath = "//input[@name='dim_y']")
     public WebElement dimYInput;
 
-    @FindBy (xpath = "//input[@name='dim_z']")
+    @FindBy(xpath = "//input[@name='dim_z']")
     public WebElement dimZInput;
 
     public void selectSoldOutStatus(int statusId) {
@@ -64,7 +66,7 @@ public class CatalogGeneralTab extends Page{
         sel.selectByIndex(statusId);
     }
 
-    public void uploadFile (String fileName) {
+    public void uploadFile(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
         driver.findElement(By.xpath("//input[@name='new_images[]']")).sendKeys(file.getAbsolutePath());

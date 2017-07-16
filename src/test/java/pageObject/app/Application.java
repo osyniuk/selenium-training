@@ -33,8 +33,8 @@ public class Application {
     }
 
     public void addProductToCatalog(Product product) {
-        catalogPage.open(baseURL);//?????
-        catalogPage.clickAddNewProduct();
+        catalogPage.open(baseURL);
+        catalogGeneralTab.open(baseURL);
         catalogGeneralTab.enableProduct.click();
         catalogGeneralTab.productGroupsInput.click();
         catalogGeneralTab.dateValidFromInput.sendKeys(product.getDateValidFrom());
