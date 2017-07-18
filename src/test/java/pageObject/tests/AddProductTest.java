@@ -11,16 +11,16 @@ import pageObject.model.Product;
 
 
 public class AddProductTest extends TestBase{
-Integer initialNumberOfProducts, finalNumberOfProducts;
-    @Test
-    @UseDataProvider(value="validProducts", location = DataProviders.class)
-    public void canAddNewProduct (Product product) {
-        initialNumberOfProducts = app.getNumberOfProducts();
-        app.addProductToCatalog(product);
-        finalNumberOfProducts = app.getNumberOfProducts();
-        Assert.assertTrue(finalNumberOfProducts==initialNumberOfProducts+1);
+  Integer initialNumberOfProducts, finalNumberOfProducts;
+  @Test
+  @UseDataProvider(value="validProducts", location = DataProviders.class)
+  public void canAddNewProduct (Product product) {
+    initialNumberOfProducts = app.getNumberOfProducts();
+    app.addProductToCatalog(product);
+    finalNumberOfProducts = app.getNumberOfProducts();
+    Assert.assertTrue(finalNumberOfProducts==initialNumberOfProducts+1);
 
 
-    }
+  }
 
 }
