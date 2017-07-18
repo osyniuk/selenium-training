@@ -2,136 +2,136 @@ package pageObject.model;
 
 public class Product {
 
-    private String dateValidFrom;
-    private String dateValidTo;
-    private String code;
-    private String name;
-    private String sku;
-    private String gtin;
-    private String taric;
-    private String quantity;
-    private String weight;
-    private String dimX;
-    private String dimY;
-    private String dimZ;
-    private int statusId;
-    private String fileName;
-    private int manId;
-    private String keywords;
-    private String shortDescription;
-    private String description;
-    private String attributes;
-    private String headTitle;
-    private String metaDescription;
-    private String purchasePrice;
-    private String currencyCode;
-    private String USDPrice;
-    private String EURPrice;
+  private String dateValidFrom;
+  private String dateValidTo;
+  private String code;
+  private String name;
+  private String sku;
+  private String gtin;
+  private String taric;
+  private String quantity;
+  private String weight;
+  private String dimX;
+  private String dimY;
+  private String dimZ;
+  private int statusId;
+  private String fileName;
+  private int manId;
+  private String keywords;
+  private String shortDescription;
+  private String description;
+  private String attributes;
+  private String headTitle;
+  private String metaDescription;
+  private String purchasePrice;
+  private String currencyCode;
+  private String USDPrice;
+  private String EURPrice;
 
-public static Builder newEntity() {
+  public static Builder newEntity() {
     return new Product().new Builder();
-}
-    public String getDateValidFrom() {
-        return dateValidFrom;
-    }
+  }
+  public String getDateValidFrom() {
+    return dateValidFrom;
+  }
 
-    public String getDateValidTo() {
-        return dateValidTo;
-    }
+  public String getDateValidTo() {
+    return dateValidTo;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getSku() {
-        return sku;
-    }
+  public String getSku() {
+    return sku;
+  }
 
-    public String getGtin() {
-        return gtin;
-    }
+  public String getGtin() {
+    return gtin;
+  }
 
-    public String getTaric() {
-        return taric;
-    }
+  public String getTaric() {
+    return taric;
+  }
 
-    public String getQuantity() {
-        return quantity;
-    }
+  public String getQuantity() {
+    return quantity;
+  }
 
-    public String getWeight() {
-        return weight;
-    }
+  public String getWeight() {
+    return weight;
+  }
 
-    public String getDimX() {
-        return dimX;
-    }
+  public String getDimX() {
+    return dimX;
+  }
 
-    public String getDimY() {
-        return dimY;
-    }
+  public String getDimY() {
+    return dimY;
+  }
 
-    public String getDimZ() {
-        return dimZ;
-    }
+  public String getDimZ() {
+    return dimZ;
+  }
 
-    public int getStatusId() {
-        return statusId;
-    }
+  public int getStatusId() {
+    return statusId;
+  }
 
-    public String getFileName() {
-        return fileName;
-    }
+  public String getFileName() {
+    return fileName;
+  }
 
-    public int getManId() {
-        return manId;
-    }
+  public int getManId() {
+    return manId;
+  }
 
-    public String getKeywords() {
-        return keywords;
-    }
+  public String getKeywords() {
+    return keywords;
+  }
 
-    public String getShortDescription() {
-        return shortDescription;
-    }
+  public String getShortDescription() {
+    return shortDescription;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getAttributes() {
-        return attributes;
-    }
+  public String getAttributes() {
+    return attributes;
+  }
 
-    public String getHeadTitle() {
-        return headTitle;
-    }
+  public String getHeadTitle() {
+    return headTitle;
+  }
 
-    public String getMetaDescription() {
-        return metaDescription;
-    }
+  public String getMetaDescription() {
+    return metaDescription;
+  }
 
-    public String getPurchasePrice() {
-        return purchasePrice;
-    }
+  public String getPurchasePrice() {
+    return purchasePrice;
+  }
 
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
+  public String getCurrencyCode() {
+    return currencyCode;
+  }
 
-    public String getUSDPrice() {
-        return USDPrice;
-    }
+  public String getUSDPrice() {
+    return USDPrice;
+  }
 
-    public String getEURPrice() {
-        return EURPrice;
-    }
+  public String getEURPrice() {
+    return EURPrice;
+  }
 
-    public class Builder {
+  public class Builder {
     private Builder() {}
     public Builder withDateValidFrom (String dateValidFrom) {Product.this.dateValidFrom=dateValidFrom; return this;}
     public Builder withDateValidTo (String dateValidTo) {Product.this.dateValidTo=dateValidTo; return this;}
@@ -162,5 +162,5 @@ public static Builder newEntity() {
 
 
     public Product build() {return Product.this;}
-    }
+  }
 }
