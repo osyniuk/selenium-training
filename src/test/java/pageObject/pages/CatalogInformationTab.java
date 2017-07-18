@@ -9,35 +9,35 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class CatalogInformationTab extends Page {
-    public CatalogInformationTab(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+  public CatalogInformationTab(WebDriver driver) {
+    super(driver);
+    PageFactory.initElements(driver, this);
+  }
 
-    public void open(String baseURL) {
-        driver.findElement(By.xpath("//a[contains(text(), 'Information')]")).click();//!!!
-    }
+  public void open() {
+    driver.findElement(By.xpath("//a[contains(text(), 'Information')]")).click();
+  }
 
-    public void selectManufacturer (int manId) {
-        Select sel1 = new Select(driver.findElement(By.name("manufacturer_id")));
-        sel1.selectByIndex(manId);
+  public void selectManufacturer (int manId) {
+    Select sel1 = new Select(driver.findElement(By.name("manufacturer_id")));
+    sel1.selectByIndex(manId);
 
-    }
-    @FindBy(xpath = "//input[@name='keywords']")
-    public WebElement keywordsInput;
+  }
+  @FindBy(name = "keywords")
+  public WebElement keywordsInput;
 
-    @FindBy(xpath = "//input[@name='short_description[en]']")
-    public WebElement shortDescriptionInput;
+  @FindBy(name = "short_description[en]")
+  public WebElement shortDescriptionInput;
 
-    @FindBy(className = "trumbowyg-editor")
-    public WebElement descriptionInput;
+  @FindBy(className = "trumbowyg-editor")
+  public WebElement descriptionInput;
 
-    @FindBy(xpath = "//textarea[@name='attributes[en]']")
-    public WebElement attributesInput;
+  @FindBy(name = "attributes[en]")
+  public WebElement attributesInput;
 
-    @FindBy(xpath = "//input[@name='head_title[en]']")
-    public WebElement headTitleInput;
+  @FindBy(name = "head_title[en]")
+  public WebElement headTitleInput;
 
-    @FindBy(xpath = "//input[@name='meta_description[en]']")
-    public WebElement metaDescriptionInput;
+  @FindBy(name = "meta_description[en]")
+  public WebElement metaDescriptionInput;
 }
