@@ -1,0 +1,144 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+
+public class CaseAgent {
+  WebDriver driver;
+
+  @Before
+  public void start() {
+    //FirefoxDriverManager.getInstance().setup();
+    //driver = new FirefoxDriver();
+    //InternetExplorerDriverManager.getInstance().setup();
+    //driver = new InternetExplorerDriver();
+    // ChromeDriverManager.getInstance().setup();
+    driver = new ChromeDriver();
+    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void addNewCaseAgent() throws InterruptedException {
+
+    //login
+    //Pune Server
+   //driver.get("http://clm-pun-033300.bmc.com:8008/innovationstudio/index.html");
+    //driver.get("http://clm-pun-031388.bmc.com:8008/innovationstudio/index.html");
+
+    //Austin server
+   //driver.get("http://clm-aus-019748.bmc.com:8008/innovationstudio/index.html");
+    driver.get("http://clm-aus-019753.bmc.com:8008/innovationstudio/index.html");
+
+    //Sunil's env
+    //driver.get("clm-pun-031224.bmc.com:8008/innovationstudio/index.html");
+
+    //tadmin
+    driver.findElement(By.xpath("//*[@id='bg-image']/article/div[2]/div/form/div[1]/label/input")).sendKeys("tadmin@petramco.com");
+    driver.findElement(By.name("password")).sendKeys("Password_1234");
+    driver.findElement(By.xpath("//*[@id=\"bg-image\"]/article/div[2]/div/form/button")).click();
+
+    //close the welcoming
+   //Thread.sleep(5000);
+    //driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/div[1]/a")).click();
+
+    //go to Administration
+    WebDriverWait wait = new WebDriverWait(driver, 20);
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(), 'Administration')]")));
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Administration')]")).click();
+
+    //Foundation Data-Manage People-Agents-Add New
+    driver.findElement(By.xpath("//*[@id=\"tree\"]/ul/li[4]/i[1]")).click();
+    driver.findElement(By.xpath("//*[@id=\"tree\"]/ul/li[4]/treeitem/ul/li[5]/i[1]")).click();
+    driver.findElement(By.xpath("//span[contains(text(), 'Agents')]")).click();
+    driver.findElement(By.xpath("//span[contains(text(), 'New')]")).click();
+    driver.manage().deleteAllCookies();
+
+    //Enter First and Last Name, Login ID
+    driver.findElement(By.name("First Name")).sendKeys("Olena");
+    driver.findElement(By.name("Last Name")).sendKeys("Agent1");
+    driver.findElement(By.name("Login ID")).sendKeys("olenaagent1");
+    driver.findElement(By.name("Password")).clear();
+    driver.findElement(By.name("Password")).sendKeys("Password_1234");
+
+    //give Fixed licenses, save
+    driver.findElement(By.xpath("/html/body/div[1]/div/div/div[3]/rx-runtime-view/div/div/div[1]/rx-record-editor/div/form/div/div[1]/rx-record-editor-component-renderer[2]/rx-container/div/div[2]/div[1]/rx-selection-field/div/div/div/label/div/div/span/i")).click();
+    driver.findElement(By.xpath("//div[contains(text(), 'Fixed')]")).click();
+    driver.findElement(By.xpath("/html/body/div[1]/div/div/div[3]/rx-runtime-view/div/div/div[1]/rx-record-editor/div/form/div/div[1]/rx-record-editor-component-renderer[2]/rx-container/div/div[2]/div[3]/rx-character-field/div/div/div/label/am-multiselect/div/button")).click();
+    driver.findElement(By.xpath("//span[contains(text(), 'com.bmc.dsm.hrcm-lib User Fixed')]")).click();
+    driver.findElement(By.xpath("//span[contains(text(), 'Save')]")).click();
+
+
+    //Edit Case Agent - Add Primary Org and Support Group
+    Thread.sleep(10000);
+    List<WebElement> elements = driver.findElements(By.cssSelector(".ui-grid-cell-contents"));
+    Actions actions = new Actions(driver);
+    actions.moveToElement(elements.get(1)).click().perform();
+    driver.findElement(By.xpath("//span[contains(text(), 'Edit')]")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("/html/body/div[1]/div/div/div[3]/rx-runtime-view/div/div/div[1]/rx-record-editor/div/form/div/div[1]/rx-record-editor-component-renderer[4]/rx-container/div/div/div/rx-association/div/div[2]/div/rx-action-button/button/span[1]")).click();
+    Thread.sleep(5000);
+    List<WebElement> elements1 = driver.findElements(By.cssSelector(".ui-grid-cell-contents"));
+    Actions actions1 = new Actions(driver);
+
+    //Petramco org
+    actions1.moveToElement(elements1.get(1)).click().perform();
+    //Psilon org
+    //actions1.moveToElement(elements1.get(5)).click().perform();
+    Thread.sleep(3000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Select')]")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Associate Support Groups')]")).click();
+    Thread.sleep(5000);
+    List<WebElement> elements2 = driver.findElements(By.cssSelector(".ui-grid-cell-contents"));
+    Actions actions2 = new Actions(driver);
+
+    //AU Support 1
+    actions2.moveToElement(elements2.get(5)).click().perform();
+
+    //AU Support 4
+    //actions2.moveToElement(elements2.get(8)).click().perform();
+    //Psilon Support 2
+    //actions2.moveToElement(elements2.get(47)).click().perform();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Select')]")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Save')]")).click();
+    Thread.sleep(5000);
+
+    //Add functional role
+    driver.findElement(By.xpath("/html/body/div[1]/div/div/div[3]/rx-runtime-view/div/div/div[1]/rx-record-editor/div/form/div/div[1]/rx-record-editor-component-renderer[1]/rx-container/div/div[3]/div[7]/rx-character-field/div/div/div/label/am-multiselect/div/button")).click();
+
+    //Case Agent
+    driver.findElement(By.xpath("//span[contains(text(), 'com.bmc.dsm.hrcm-lib:Case Agent')]")).click();
+    Thread.sleep(5000);
+    driver.findElement(By.xpath("//span[contains(text(), 'Save')]")).click();
+    Thread.sleep(5000);
+  }
+
+  @After
+  public void stop() {
+    driver.quit();
+    driver = null;
+  }
+
+}
+
+
